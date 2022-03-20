@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} AdminController!{% endblock %}
+
+{% block body %}
+
+
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/banner01.jpg);">
+    <h2 class="l-text2 t-center">
+        Cart
+    </h2>
+</section>
+
+<section class="cart bgwhite p-t-70 p-b-100">
+    <div class="container">
+        
+        <div class="container-table-cart pos-relative">
+            <div class="wrap-table-shopping-cart bgwhite">
+
+            <table class="table-shopping-cart">
+                <tr class="table-head">
+                    <th class="column-1">Entity</th>
+                    <th class="column-2">Link</th>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="column-1">Address</td>
+                    <td class="column-2"><a href="{{ path('app_adminaddress_index') }}">show</a></td>
+                </tr>
+
+                <tr class="table-row">
+                   <td class="column-1">Category</td>
+                    <td class="column-2"><a href="{{ path('app_admincategory_index') }}">show</a></td>
+                </tr>
+                
+                <tr class="table-row">
+                    <td class="column-1">CommandLine</td>
+                    <td class="column-2"><a href="{{ path('app_admincommandline_index') }}">show</a></td>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="column-1">Order</td>
+                    <td class="column-2"><a href="{{ path('app_adminorder_index') }}">show</a></td>
+                </tr>
+
+                 <tr class="table-row">
+                    <td class="column-1">User</td>
+                    <td class="column-2"><a href="{{ path('app_adminuser_index') }}">show</a></td>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="column-1">Product</td>
+                    <td class="column-2"><a href="{{ path('app_adminproduct_index') }}">show</a></td>
+                </tr>
+
+               
+            </table>
+        </div>
+
+	</section>
+
+{% endblock %}
