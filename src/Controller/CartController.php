@@ -25,6 +25,8 @@ class CartController extends AbstractController
 
         $dataCart = [];
         $total = 0;
+
+        if(!empty($cart)){
         foreach ( $cart as $id => $quantity){
             $product = $productRepository->find($id);
             $dataCart[] = [
@@ -33,7 +35,7 @@ class CartController extends AbstractController
             ];
 
             $total += $product->getPrice() * $quantity;
-        }
+        }}
 
         return $this->render('cart/index.html.twig', compact("dataCart", "total", "addresses"));
     }

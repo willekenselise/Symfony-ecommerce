@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Form\AddressType;
-use App\Form\AddressType2;
+use App\Form\Address3Type;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +25,7 @@ class AddressController extends AbstractController
     {
         $address = new Address();
      
-        $form = $this->createForm(AddressType2::class, $address);
+        $form = $this->createForm(Address3Type::class, $address);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
