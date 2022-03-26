@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(../../images/banner01.jpg);">
+    <h2 class="l-text2 t-center">
+        User : {{ user.name}}
+    </h2>
+</section>
+
+<!-- content page -->
+<section class="bgwhite p-t-66 p-b-38">
+    <div class="container">
+        <div class="row">
+
+        <div class="d-flex flex-column">
+
+
+                <h3 class="m-text26 p-t-15 p-b-16">
+                    Your informations
+                </h3>
+
+                <table class="table">
+                    <tr><th>Firstname : </th><td>{{user.firstname }}</td></tr>
+                    <tr><th>Lastname : </th><td>{{user.name }}</td></tr>
+                    <tr><th>Email : </th><td>{{user.email }}</td></tr>
+                    <tr><th>Phone : </th><td>{{user.phone }}</td></tr>
+               
+                </table>
+
+                <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Edit your profile</a>
+
+                <h2 class="m-text26 p-t-60 p-b-16">Your address(es)</h2>
+                
+                <table class="table">
+                {% for address in addresses %}
+                
+                    <tr>
+                        <td>
+                            <p>{{ address.name }} {{ address.firstname }}</p>
+                            <p>{{ address.address }}</p>
+                            <p>{{ address.cp }} {{ address.city }}, {{ address.country }}</p>
+                        </td>
+                    </tr>
+                {% else %}
+
+                <p>no address</p>
+
+                {% endfor %}
+                </table>
+
+                <div class="">
+                    <a href="{{ path('app_address_add') }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">add an a address</a>
+                </div>
+
+                <h2 class="m-text26 p-t-60 p-b-16">Vos commandes</h2>
+            
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Command number</th>
+                            <th>Date</th>
+                            <th>Products</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in user.orderid %}
+                        <tr>
+                            <td>{{order.id}}</td>
+                            <td>{{order.date ? order.date|date('d/m/Y à H:i') : ''}}</td>
+                            <td>
+                                {% for commandline in order.commandlines %}
+                                <li><a href="{{ path('app_product_show', {'id': commandline.product.id}) }}">{{ commandline.product.name }}</a> ({{commandline.quantity}})    |     {{commandline.quantity * commandline.product.price}} €</li>
+                                {% else %}
+                                <li> no product </li>
+                                {% endfor %}
+                            </td>
+                        </tr>            
+                        {% else %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
